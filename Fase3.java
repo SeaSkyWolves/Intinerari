@@ -1,6 +1,4 @@
-import java.util.*;
-
-public class Main {
+public class Fase3 {
     public static void main(String[] args) throws Exception {
 
         final int primerAnyTransicio = 1948;
@@ -13,14 +11,14 @@ public class Main {
 
         //Forma 1.
         //Partint de lâ€™any 1948 heu de fer un bucle for i mostrar els anys de traspÃ s fins arriba al vostre any de naixement.
-        System.out.println("MÃ¨tode 1 - Els anys de transciciÃ³ desprÃ©s del 1948 sÃ³n: ");
+        System.out.println("Métode 1 - Els anys de transcició després del 1948 són: ");
         
         for (int i = 0; i < numeroTransicions; ++i){
-            System.out.println(primerAnyTransicio + (i+1)*4);
+            System.out.println(primerAnyTransicio + (i+1)*interval);
         }
         
         
-        System.out.println("MÃ¨tode 2 - Els anys de transciciÃ³ sÃ³n: ");
+        System.out.println("Métode 2 - Els anys de transcició són: ");
         
         
         for (int anysTransicions = primerAnyTransicio; anysTransicions < anyNeixement; anysTransicions += 4){
@@ -30,11 +28,11 @@ public class Main {
         //Creeu una variable bool que sera certa si lâ€™any de naixement Ã©s de traspÃ s o falsa si no ho Ã©s.
         boolean transicio = false;
         //Creeu dues variables string per guardar les frases
-        String fraseCerta = "Ã‰s un any de transiciÃ³. ";
-        String fraseFalsa = "No Ã©s un any de transiciÃ³. ";
+        String fraseCerta = "És un any de transició. ";
+        String fraseFalsa = "No és un any de transició. ";
         
         //Complin amb l'enunciat
-        System.out.println("MÃ¨tode 3 - Fent cas a l'enunciat: ");
+        System.out.println("Mètode 3 - Fent cas a l'enunciat: ");
         for (int anys = primerAnyTransicio; anys <= anyNeixement; ++anys){
             System.out.print("Any: " + anys + ". ");
 

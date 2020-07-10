@@ -1,6 +1,4 @@
-import java.util.*;
-
-public class Main {
+public class Fase2 {
     public static void main(String[] args) throws Exception {
 
 
@@ -16,10 +14,10 @@ public class Main {
         //Calculeu quants anys de traspàs hi ha entre 1948 i el vostre any de naixement i emmagatzemeu el valor resultant en una variable.
         final int anyNeixement = 1990;
         
-        int numeroTransicions = (anyNeixement - primerAnyTransicio)/4;
+        int numeroTransicions = (anyNeixement - primerAnyTransicio)/interval;
         
         //Mostreu per pantalla el resultat del càlcul.
-        System.out.printf("Resposta: Des de l'any, %d fins l'any %d han passat %d anys de transició sense comptar el de l'any 1948. %n", primerAnyTransicio, anyNeixement, numeroTransicions);
+        System.out.printf("Resposta: Des de l'any, %d fins l'any %d han passat %d anys de transici� sense comptar el de l'any 1948. %n", primerAnyTransicio, anyNeixement, numeroTransicions);
 
 
        
