@@ -1,10 +1,10 @@
-public class Fase4 {
+public class Exercici1_Fase4 {
     public static void main(String[] args) throws Exception {
         
 
         String nom = "Iori";
         String cognom1 = "Yagami";
-        String cognom2 = "Nu√±ez";
+        String cognom2 = "NuÒez";
         
         int dia = 07;
         int mes = 07;
@@ -25,9 +25,9 @@ public class Fase4 {
         String NomComplet = nom + " " + cognom1 + " " + cognom2;
         String data = dia+"/"+mes+"/"+any;
         
-        String frase = "El meu nom √©s " + NomComplet + "%n" 
-                        + "Vaig n√©ixer el " +  data + "%n"
-                        +"El meu any de naixement no √©s de trasp√†s ";
+        String frase = "El meu nom Ès " + NomComplet + "%n" 
+                        + "Vaig nÈixer el " +  data + "%n"
+                        +"El meu any de naixement no Ès de trasp‡s ";
     
         System.out.printf(frase);
 

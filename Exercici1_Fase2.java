@@ -1,4 +1,4 @@
-public class Fase2 {
+public class Exercici1_Fase2 {
     public static void main(String[] args) throws Exception {
 
 

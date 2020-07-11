@@ -1,4 +1,4 @@
-public class Fase3 {
+public class Exercici1_Fase3 {
     public static void main(String[] args) throws Exception {
 
         final int primerAnyTransicio = 1948;

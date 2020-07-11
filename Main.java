@@ -39,7 +39,7 @@ public class Main {
         int numeroTransicions = (anyNeixement - primerAnyTransicio)/interval;
         
         //Mostreu per pantalla el resultat del càlcul.
-        System.out.printf("Resposta: Des de l'any, %d fins l'any %d han passat %d anys de transició sense comptar el de l'any 1948. %n", primerAnyTransicio, anyNeixement, numeroTransicions);
+        System.out.printf("Resposta: Des de l'any, %d fins l'any %d han passat %d anys de traspàs sense comptar el de l'any 1948. %n", primerAnyTransicio, anyNeixement, numeroTransicions);
 
 
         //FASE 3
@@ -47,7 +47,7 @@ public class Main {
 
         //Forma 1.
         //Partint de l’any 1948 heu de fer un bucle for i mostrar els anys de traspàs fins arriba al vostre any de naixement.
-        System.out.println("Mètode 1 - Els anys de transcició després del 1948 són: ");
+        System.out.println("Mètode 1 - Els anys de traspàs després del 1948 són: ");
         
         for (int i = 0; i < numeroTransicions; ++i){
             System.out.println(primerAnyTransicio + (i+1)*4);
