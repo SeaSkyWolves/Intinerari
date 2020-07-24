@@ -19,7 +19,7 @@ public class Exercici3_CIUTATS_Fase2 {
          
          //FASE 2 (2 punts)
 
-         //Un cop tenim els noms de les ciutats guardats en variables haurem de pasar l’informacio a un array (arrayCiutats). (1 punt)
+         //Un cop tenim els noms de les ciutats guardats en variables haurem de pasar l’informacio a una array (arrayCiutats). (1 punt)
 
      	String[] arrayCiutats = {nom1, nom2, nom3, nom4, nom5, nom6};
          

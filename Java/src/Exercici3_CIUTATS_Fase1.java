@@ -25,7 +25,7 @@ public class Exercici3_CIUTATS_Fase1 {
         nom6 = readNom();
 
         //Mostra per consola el nom de les 6 ciutats.
-         System.out.printf("Els noms de les ciutats són %s, %s, %s, %s, %s, %s", nom1, nom2, nom3, nom4, nom5, nom6);
+         System.out.printf("Els noms de les ciutats són: %s, %s, %s, %s, %s, %s", nom1, nom2, nom3, nom4, nom5, nom6);
 
     }
     
