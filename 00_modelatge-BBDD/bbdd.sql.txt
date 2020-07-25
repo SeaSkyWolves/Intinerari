@@ -15,22 +15,6 @@ CREATE SCHEMA IF NOT EXISTS `Optica` DEFAULT CHARACTER SET utf8 ;
 USE `Optica` ;
 
 -- -----------------------------------------------------
--- Table `Optica`.`ProviderAdress`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Optica`.`ProviderAdress` (
-  `idProviderAdress` INT NOT NULL,
-  `street` VARCHAR(45) NOT NULL,
-  `number` INT NULL,
-  `postalCode` INT NOT NULL,
-  `city` VARCHAR(45) NOT NULL,
-  `door` VARCHAR(45) NOT NULL,
-  `floor` VARCHAR(45) NULL,
-  PRIMARY KEY (`idProviderAdress`),
-  UNIQUE INDEX `idClientAdress_UNIQUE` (`idProviderAdress` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Optica`.`Provider`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Optica`.`Provider` (
@@ -38,15 +22,8 @@ CREATE TABLE IF NOT EXISTS `Optica`.`Provider` (
   `phone` CHAR(10) NOT NULL,
   `fax` CHAR(10) NULL,
   `nif` CHAR(9) NOT NULL,
-  `ProviderAdress_idProviderAdress` INT NOT NULL,
   UNIQUE INDEX `idProvider_UNIQUE` (`idProvider` ASC) VISIBLE,
-  PRIMARY KEY (`idProvider`),
-  INDEX `fk_Provider_ProviderAdress1_idx` (`ProviderAdress_idProviderAdress` ASC) VISIBLE,
-  CONSTRAINT `fk_Provider_ProviderAdress1`
-    FOREIGN KEY (`ProviderAdress_idProviderAdress`)
-    REFERENCES `Optica`.`ProviderAdress` (`idProviderAdress`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idProvider`))
 ENGINE = InnoDB;
 
 
@@ -61,22 +38,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Optica`.`ClientAdress`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Optica`.`ClientAdress` (
-  `idClientAdress` INT NOT NULL,
-  `street` VARCHAR(45) NOT NULL,
-  `number` INT NULL,
-  `postalCode` INT NOT NULL,
-  `city` VARCHAR(45) NOT NULL,
-  `door` VARCHAR(45) NOT NULL,
-  `floor` VARCHAR(45) NULL,
-  PRIMARY KEY (`idClientAdress`),
-  UNIQUE INDEX `idClientAdress_UNIQUE` (`idClientAdress` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Optica`.`Client`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Optica`.`Client` (
@@ -87,19 +48,12 @@ CREATE TABLE IF NOT EXISTS `Optica`.`Client` (
   `email` VARCHAR(45) NOT NULL,
   `date` DATE NOT NULL,
   `RecomendedBy_idClient` INT NOT NULL,
-  `ClientAdress_idClientAdress` INT NOT NULL,
   PRIMARY KEY (`idClient`),
   UNIQUE INDEX `idClient_UNIQUE` (`idClient` ASC) VISIBLE,
   INDEX `fk_Client_Client1_idx` (`RecomendedBy_idClient` ASC) VISIBLE,
-  INDEX `fk_Client_ClientAdress1_idx` (`ClientAdress_idClientAdress` ASC) VISIBLE,
   CONSTRAINT `fk_Client_Client1`
     FOREIGN KEY (`RecomendedBy_idClient`)
     REFERENCES `Optica`.`Client` (`idClient`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Client_ClientAdress1`
-    FOREIGN KEY (`ClientAdress_idClientAdress`)
-    REFERENCES `Optica`.`ClientAdress` (`idClientAdress`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -137,6 +91,70 @@ CREATE TABLE IF NOT EXISTS `Optica`.`Glasses` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Glasses_Client1`
+    FOREIGN KEY (`Client_idClient`)
+    REFERENCES `Optica`.`Client` (`idClient`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Optica`.`Adress`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Optica`.`Adress` (
+  `idAdress` INT NOT NULL,
+  `street` VARCHAR(45) NOT NULL,
+  `number` INT NULL,
+  `postalCode` INT NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `door` VARCHAR(45) NOT NULL,
+  `floor` VARCHAR(45) NULL,
+  PRIMARY KEY (`idAdress`),
+  UNIQUE INDEX `idClientAdress_UNIQUE` (`idAdress` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Optica`.`Provider_has_adress`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Optica`.`Provider_has_adress` (
+  `idProvider_has_adress` INT NOT NULL,
+  `Provider_idProvider` INT NOT NULL,
+  `Adress_idAdress` INT NOT NULL,
+  PRIMARY KEY (`idProvider_has_adress`),
+  UNIQUE INDEX `idProvider_has_adress_UNIQUE` (`idProvider_has_adress` ASC) VISIBLE,
+  INDEX `fk_Provider_has_adress_Provider1_idx` (`Provider_idProvider` ASC) VISIBLE,
+  INDEX `fk_Provider_has_adress_Adress1_idx` (`Adress_idAdress` ASC) VISIBLE,
+  CONSTRAINT `fk_Provider_has_adress_Provider1`
+    FOREIGN KEY (`Provider_idProvider`)
+    REFERENCES `Optica`.`Provider` (`idProvider`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Provider_has_adress_Adress1`
+    FOREIGN KEY (`Adress_idAdress`)
+    REFERENCES `Optica`.`Adress` (`idAdress`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Optica`.`Client_has_adress`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Optica`.`Client_has_adress` (
+  `idClient_has_adress` INT NOT NULL,
+  `Adress_idAdress` INT NOT NULL,
+  `Client_idClient` INT NOT NULL,
+  PRIMARY KEY (`idClient_has_adress`),
+  UNIQUE INDEX `idClient_has_adress_UNIQUE` (`idClient_has_adress` ASC) VISIBLE,
+  INDEX `fk_Client_has_adress_Adress1_idx` (`Adress_idAdress` ASC) VISIBLE,
+  INDEX `fk_Client_has_adress_Client1_idx` (`Client_idClient` ASC) VISIBLE,
+  CONSTRAINT `fk_Client_has_adress_Adress1`
+    FOREIGN KEY (`Adress_idAdress`)
+    REFERENCES `Optica`.`Adress` (`idAdress`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Client_has_adress_Client1`
     FOREIGN KEY (`Client_idClient`)
     REFERENCES `Optica`.`Client` (`idClient`)
     ON DELETE NO ACTION

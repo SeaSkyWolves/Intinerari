@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM usairlineflights2.flights;
